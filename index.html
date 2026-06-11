@@ -717,12 +717,8 @@
 
         updateStatus("connecting");
 
-        mqttClient = new Paho.Client(
-          "wss://" + server,
-          port,
-          "/mqtt",
-          clientId,
-        );
+        const fullUrl = "wss://" + server + ":" + port + "/mqtt";
+        mqttClient = new Paho.Client(fullUrl, clientId);
 
         mqttClient.onConnectionLost = function (responseObject) {
           updateStatus("disconnected");
